@@ -1,3 +1,5 @@
+from random import shuffle
+import copy
 class deckObj(object):
     def __init__(self):
         self.deck = self.genDeck()
@@ -28,6 +30,7 @@ class deckObj(object):
                 value = 'K'
             card['value'] = value
             card['suit'] = suit
+            card['index'] = i
             preDeck.append(card)
         deck = []
         return preDeck
@@ -35,11 +38,17 @@ class deckObj(object):
     def getDeck(self):
         return self.deck
 
+    def shuffleDeck(self):
+        deckCopy = copy.deepcopy(self.deck)
+        shuffle(deckCopy)
+        return deckCopy
+
 
 def main():
     deck = deckObj()
     print str(len(deck.getDeck()))
     print deck.getDeck()
+    print deck.shuffleDeck()
 
 if __name__ == "__main__":
     main()
